@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="script.js"></script> -->
+    
+</head>
+<body>
+    <div class="container">
+        <div id="display">0</div>
+        <div id="big_button">
+            <button id="clear">clear</button>
+            <button id="delete">delete</button>
+        </div>
+        <div id="button_container">
+        <button id="calc_key">9</button>
+        <button id="calc_key">8</button>
+        <button id="calc_key">7</button>
+        <button id="op">+</button>
+        <button id="calc_key">6</button>
+        <button id="calc_key">5</button>
+        <button id="calc_key">4</button>
+        <button id="op">-</button>
+        <button id="calc_key">3</button>
+        <button id="calc_key">2</button>
+        <button id="calc_key">1</button>
+        <button id="op">*</button>
+        <button id="decimal">.</button>
+        <button id="calc_key">0</button>
+        <button id="equal">=</button>
+        <button id="op">/</button>
+        </div>
+
+    </div>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            display: flex;
+            width: 500px;
+            height: 600px;
+            background-color:bisque;
+            flex-direction: column;
+            flex-grow: 0;
+            align-items: flex-start;
+        }
+        #display{
+            display: flex;
+            width:400px;
+            margin-top: 30px;
+            margin-left: 50px;
+            border: solid white 2px;
+            height: 70px;
+            font-size: 50px;
+            justify-content: flex-end;
+            align-items: flex-end;
+            background-color: aliceblue;
+            
+        }
+        #button_container{
+            /* margin-top: 10px; */
+            margin-left:50px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            
+            gap:0px 5px;
+            
+            width: 400px;
+            height: 350px;
+            
+        } 
+        button{
+            width:95px;
+            height: 80px;
+            font-size: 20px;
+            
+           
+        }
+        #big_button{
+            margin-top: 30px;
+            margin-left: 50px;
+            width: 400px;
+            height: 100px;
+            display: flex;
+            
+            justify-content: space-between;
+        }
+        #clear,#delete{
+            width: 170px;
+            height: 80px;
+        }
+    </style>
+    <script>
+    const buttons=document.querySelectorAll(".container>#button_container>#calc_key");
+    const display=document.querySelector(".container>#display");
+    let splitter=" "; 
+
+    function set_new(){
+    buttons.forEach((button)=>{
+    button.addEventListener("click",()=>{
+    if(display.textContent==="0"){
+    display.textContent=button.textContent;
+}
+    else{
+    display.textContent+=button.textContent;
+}
+});
+});
+    }
+    const clear=document.querySelector(".container>#big_button>#clear");
+    
+    clear.addEventListener('click',()=>{
+        display.textContent="0";
+    });
+    
+    set_new();
+
+    function calculate(){
+        let arr=display.textContent.split(`${splitter}`);
+        switch(splitter){
+            case '+':{
+                return Number(arr[0])+Number(arr[1]);
+            }
+            case '-':{
+                return Number(arr[0])-Number(arr[1]);
+            }
+            case '*':{
+                return Number(arr[0])*Number(arr[1]);
+            }
+            case '/':{
+                if(Number(arr[1])===0){
+                    return"ERROR";
+                }
+                return Number(arr[0])/Number(arr[1]);
+            }
+        }
+    }
+
+    const del=document.querySelector(".container>#big_button>#delete");
+    del.addEventListener("click",()=>{
+        
+        display.textContent=display.textContent.substring(0,display.textContent.length-1);
+        if(display.textContent.length==0){
+            display.textContent="0";
+        }
+    });
+    const equal=document.querySelector(".container>#button_container>#equal");
+    equal.addEventListener("click",()=>{
+       display.textContent=calculate(); 
+    });
+
+    const decimal=document.querySelector(".container>#button_container>#decimal");
+    decimal.addEventListener('click',()=>{
+        display.textContent+='.';
+    });
+
+    const operator=document.querySelectorAll(".container>#button_container>#op");
+    operator.forEach((op)=>{
+        op.addEventListener('click',()=>{
+            if(splitter===" "){
+            splitter=`${op.textContent}`;
+            display.textContent+=splitter;
+        }
+        else{
+            display.textContent=calculate();
+            splitter=`${op.textContent}`;
+            display.textContent+=splitter;
+        }
+        })
+    })
+    </script>
+</body>
+</html>
