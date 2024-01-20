@@ -8,6 +8,7 @@
     
 </head>
 <body>
+    <div id="header">Calci</div>
     <div class="container">
         <div id="display">0</div>
         <div id="big_button">
@@ -37,17 +38,21 @@
     <style>
         body{
             display: flex;
-            justify-content: center;
-            align-items: center;
+            /* justify-content: center;
+            align-items: center; */
+            background-color:rgba(0, 0, 0, 0.801);
+            flex-direction: column;
         }
         .container{
+            margin-top: 50px;
             display: flex;
             width: 500px;
             height: 600px;
-            background-color:bisque;
+            background-color:rgb(107, 2, 206);
             flex-direction: column;
             flex-grow: 0;
             align-items: flex-start;
+            align-self: center;
         }
         #display{
             display: flex;
@@ -75,11 +80,21 @@
             width: 400px;
             height: 350px;
             
+        }
+        #header{
+            display: flex;
+            background-color: blueviolet;
+            color: black;
+            flex-grow: 1;
+            padding: 15px;
+            font-size: 50px;
+            font-weight: bolder;
         } 
         button{
             width:95px;
             height: 80px;
             font-size: 20px;
+            background-color: ye;
             
            
         }
@@ -98,6 +113,8 @@
         }
     </style>
     <script>
+
+
     const buttons=document.querySelectorAll(".container>#button_container>#calc_key");
     const display=document.querySelector(".container>#display");
     let splitter=" "; 
@@ -153,7 +170,8 @@
     });
     const equal=document.querySelector(".container>#button_container>#equal");
     equal.addEventListener("click",()=>{
-       display.textContent=calculate(); 
+       display.textContent=calculate();
+       splitter=" "; 
     });
 
     const decimal=document.querySelector(".container>#button_container>#decimal");
