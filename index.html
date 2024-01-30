@@ -39,6 +39,9 @@
 
     </div>
     <style>
+        :root{
+            font-size: 62.5%;;
+        }
         body{
             display: flex;
             /* justify-content: center;
@@ -49,41 +52,44 @@
         .container{
             margin-top: 50px;
             display: flex;
-            width: 500px;
-            height: 600px;
+            width: min(65%,300px);
+            /* min-width: min-content; */
+            
             background-color:rgb(107, 2, 206);
             flex-direction: column;
-            flex-grow: 0;
-            align-items: flex-start;
+            
+            align-items: center;
             align-self: center;
         }
+        
         #display{
             display: flex;
-            width:400px;
-            margin-top: 30px;
-            margin-left: 50px;
+            width:90%;
+            margin:10%;
             border: solid white 2px;
-            height: 70px;
-            font-size: 50px;
+            
+            font-size: min(7rem,30vw);
             justify-content: flex-end;
-            align-items: flex-end;
+            align-self: center;
             background-color: aliceblue;
             
         }
         #button_container{
-            /* margin-top: 10px; */
-            margin-left:50px;
+            margin-top: 5%;
+            /* /* margin-left:50px; */
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             
-            gap:0px 5px;
+            gap:5px 0px;
             
-            width: 400px;
-            height: 350px;
+            width: 90%;
+            padding-bottom: 10%;
+            
             
         }
+        
         #header{
             display: flex;
             background-color: blueviolet;
@@ -93,27 +99,28 @@
             font-size: 50px;
             font-weight: bolder;
         } 
-        button{
-            width:95px;
-            height: 80px;
-            font-size: 20px;
-            background-color: ye;
+         #button_container>*{
+            width:25%;
+            
+            font-size: min(3rem,15vw)
+        
             
            
-        }
+         } 
         #big_button{
-            margin-top: 30px;
-            margin-left: 50px;
-            width: 400px;
-            height: 100px;
+            
+            width: 90%;
+            min-height: 15px;
             display: flex;
             
+            
             justify-content: space-between;
-        }
+        } 
         #clear,#delete{
-            width: 170px;
-            height: 80px;
-        }
+            width: 50%;
+            font-size: min(3rem,15vw);
+            
+        }   
     </style>
     <script>
 
